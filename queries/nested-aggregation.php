@@ -2,12 +2,12 @@
     include '../connect.php';
     $conn = OpenCon();
     
-    $sql = "SELECT temp.username, temp.birthday 
-            FROM (SELECT username, birthday, AVG(price) as average
+    $sql = "SELECT username, birthday, average
+            FROM (SELECT users.username, birthday, AVG(price) average
                     FROM ad, users, post 
                     WHERE users.username = post.username AND post.post_id = ad.post_id
-                    GROUP BY username) as temp  
-            WHERE temp.average = (SELECT MIN(temp.average) FROM temp)";
+                    GROUP BY users.username) AS t  
+            WHERE average = (SELECT MIN(average) FROM t)";
 
     $result = $conn->query($sql);
 
@@ -21,7 +21,8 @@
             echo "</table>";
         }
     } else {
-        echo "Sorry, something went wrong";
+        echo "Sorry, something went wrong <br />";
+        echo $conn->error;
     } 
 
     CloseCon($conn);
