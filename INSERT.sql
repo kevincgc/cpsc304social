@@ -87,15 +87,12 @@ INSERT INTO Comments VALUES(3,'bigDaddy',1,'DON''T HESITATE','2020-07-01 18:00:0
 INSERT INTO Comments VALUES(4,'greatEagle',2,'Let me maga AGAIN','2020-10-10 12:03:53');
 INSERT INTO Comments VALUES(5,'beastWithDeepVoice',6,'Great quote','1995-06-23');
 
-
-/*Cannot add or update a child row: a foreign key constraint fails (`CPSC304_Project`.`Calendar`, CONSTRAINT `Calendar_ibfk_1` FOREIGN KEY (`username`) REFERENCES `Users` (`username`) ON DELETE CASCADE)*/
 INSERT INTO Calendar VALUES(1,'beastWithDeepVoice');
 INSERT INTO Calendar VALUES(2,'baldButBeautiful');
 INSERT INTO Calendar VALUES(3,'bigDaddy');
 INSERT INTO Calendar VALUES(4,'heHasADream');
 INSERT INTO Calendar VALUES(5,'greatEagle');
 
-/*same error as Calendar*/
 INSERT INTO Calendar_Records_Events VALUES(1,1,'2016-11-07 12:00:00');
 INSERT INTO Calendar_Records_Events VALUES(1,5,'2020-08-10 00:00:00');
 INSERT INTO Calendar_Records_Events VALUES(3,4,'2015-01-01 12:00:00');
