@@ -103,7 +103,7 @@ CREATE TABLE Chat (
     PRIMARY KEY (chat_id)
 );
 
-CREATE TABLE Message(
+CREATE TABLE Message (
     message_id 	INTEGER NOT NULL,
     chat_id     INTEGER NOT NULL,
     username   	VARCHAR(20) NOT NULL,
