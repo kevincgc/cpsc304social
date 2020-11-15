@@ -1,0 +1,1 @@
+DROP DATABASE CPSC304_Project;
