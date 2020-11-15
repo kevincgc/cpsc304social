@@ -1,17 +1,16 @@
 <?php
     include '../connect.php';
     $conn = OpenCon();
-
+    
     $sql = "SELECT temp.username, temp.birthday 
-            FROM (SELECT username, birthday, AVG(price) AS average
+            FROM (SELECT username, birthday, AVG(price) as average
                     FROM ad, users, post 
                     WHERE users.username = post.username AND post.post_id = ad.post_id
-                    GROUP BY username) AS temp  
+                    GROUP BY username) as temp  
             WHERE temp.average = (SELECT MIN(temp.average) FROM temp)";
 
     $result = $conn->query($sql);
-    // $temp = $result->fetch_assoc();
-    // echo json_encode($temp);
+
     if ($result) {
         echo "List Of Users<br /><br />";
         if ($result->num_rows > 0) {
