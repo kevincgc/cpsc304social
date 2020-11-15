@@ -2,7 +2,7 @@ CREATE DATABASE CPSC304_Project;
 
 CREATE TABLE Users (
 	username VARCHAR(20) NOT NULL,
-	password VARCHAR(20) NOT NULL,
+	passwrd VARCHAR(20) NOT NULL,
 	gender VARCHAR(20),
 	birthday DATE,
 	fname VARCHAR(20) NOT NULL,
