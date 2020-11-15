@@ -37,11 +37,9 @@
 
         <hr />
 
-        <h2>DROP USER (Deletion)</h2>
-        <form method="delete" action="main.php">
-            <input type="hidden" id="updateQueryRequest" name="updateQueryRequest">
-            User Name: <input type="text" name="oldName"> <br /><br />
-
+        <h2>Delete User (Deletion)</h2>
+        <form method="post" action="queries/delete.php">
+            User Name: <input type="text" name="username" required> <br /><br />
             <input type="submit" value="Submit"></p>
         </form>
 
@@ -56,10 +54,10 @@
 
         <hr />
 
-        <h2>Get Users By Birthday! (Selection)</h2>
-        <form method="post" action="main.php">
-            From: <input type="text" name="oldName"> <br /><br />
-            To: <input type="text" name="oldName"> <br /><br />
+        <h2>Get Users By Birthday Range! (Selection)</h2>
+        <form method="post" action="queries/selection.php">
+            From: 	<input type="date" name="startDate" required> <br /><br />
+            To: 	<input type="date" name="endDate" required> <br /><br />
             <input type="submit" value="Submit"></p>
         </form>
 
@@ -75,8 +73,8 @@
         <hr />
 
         <h2>Get Users Who Have An Event On The Date (Join)</h2>
-        <form method="post" action="main.php">
-            Date: <input type="text" name="oldName"> <br /><br />
+        <form method="post" action="queries/join.php">
+            Date: <input type="date" name="date"> <br /><br />
             <input type="submit" value="Submit"></p>
             
         </form>
@@ -92,12 +90,11 @@
 
         <hr />
 
-        <h2>Get Users who are older than certain age and have posted more than certain number of blogs  (Aggregation with Having)</h2>
-        <form method="post" action="main.php">
-            Age: <input type="text" name="oldName"> <br /><br />
-            Number Of Posts: <input type="text" name="oldName"> <br /><br />
+        <h2>Get Users whose birthday is after a certain date and have posted more than certain number of blogs  (Aggregation with Having)</h2>
+        <form method="post" action="queries/aggregation-having.php">
+            Birthday: <input type="date" name="date"> <br /><br />
+            Number Of Posts: <input type="text" name="count"> <br /><br />
             <input type="submit" value="Submit"></p>
-        
         </form>
 
         <hr />
@@ -110,14 +107,9 @@
 
         <hr />
 
-        <h2>Find Users who registered after certain date and posted their ads with price of (Division)</h2>
-        <form method="post" action="main.php">
-            Date: <input type="text" name="oldName"> <br /><br />
-            Price: <input type="text" name="oldName"> <br /><br />
-            Price: <input type="text" name="oldName"> <br /><br />
-            Price: <input type="text" name="oldName"> <br /><br />
+        <h2>Find username of users who belong to every group. (Division)</h2>
+        <form method="post" action="queries/division.php">
             <input type="submit" value="Submit"></p>
-        
         </form>
 	</body>
 </html>

@@ -1,9 +1,9 @@
 #2. Deletion: Delete chat (all messages will be deleted)
-DELETE FROM Chat
-WHERE chat_id = $chat_id;
+DELETE FROM Users
+WHERE username = '$chat_id';
 
 #4. Selection: get all users whose birthdays are between January 1st and February 1st of 1997
-SELECT username
+SELECT username, birthday
 FROM Users
 WHERE birthday > $range_start AND birthday < $range_end;
 
