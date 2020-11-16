@@ -1,12 +1,13 @@
 <?php
     include '../connect.php';
     $conn = OpenCon();
-    
-    $sql = "SELECT temp.username, temp.birthday, temp.average, MIN(average)
-            FROM (SELECT u.username, birthday, AVG(price) average
-                    FROM ad a, users u, post p 
-                    WHERE u.username = p.username AND p.post_id = a.post_id
-                    GROUP BY username) AS temp";
+
+    $sql = "SELECT username, birthday, average
+            FROM (SELECT users.username, birthday, AVG(price) average
+                    FROM ad, users, post 
+                    WHERE users.username = post.username AND post.post_id = ad.post_id
+                    GROUP BY users.username) temp  
+            WHERE average = (SELECT MIN(average) FROM temp)";
 
     $result = $conn->query($sql);
 
