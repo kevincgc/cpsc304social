@@ -4,10 +4,10 @@
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $gender = $_POST['gender'];
+    $gender = $_POST['gender'] ?: 'N/A';
     $birthday = $_POST['birthday'];
     $firstName = $_POST['firstName'];
-    $middleName = $_POST['middleName'];
+    $middleName = $_POST['middleName'] ?: 'N/A';
     $lastName = $_POST['lastName'];
     $creationDate = date("Y-m-d");
 
