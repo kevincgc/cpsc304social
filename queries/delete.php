@@ -4,17 +4,25 @@
 
     $username = $_POST['username'];
 
-    $sql = "DELETE FROM Users WHERE username = '$username'"; 
-
-    if ($conn->query($sql) === TRUE) {
-        echo "User deleted<br /><br />";
-        $selectSql = "SELECT * FROM users";
-        $result = $conn->query($selectSql)->fetch_assoc();
-        echo json_encode($result);
+    $sql1 = "DELETE FROM Users WHERE username = '$username'"; 
+    $result1 = $conn->query($sql1);
+    $sql = "SELECT username from Users;";
+    $result = $conn->query($sql);
+    echo "User ";
+    echo $username;
+    echo " deleted";
+    echo "<br><br><br><br>";
+    if ($result->num_rows > 0) {
+        echo "<table><tr><th class='borderclass'>username</th></tr>";
+        // output data of each row
+        while($row = $result->fetch_assoc()) { 
+            echo "<tr><td class='borderclass'>".$row["username"]."</td></tr>";
+        }
+        echo "</table>";
     } else {
-        echo "Sorry, something went wrong";
-    } 
-
+        echo "0 results";
+    }
     CloseCon($conn);
+
 
 ?>
