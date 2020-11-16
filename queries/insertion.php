@@ -1,6 +1,5 @@
 <?php
     include '../connect.php';
-    include '../main.php';
     $conn = OpenCon();
 
     $username = $_POST['username'];
@@ -45,7 +44,8 @@
             echo "</table>";
         }
     } else {
-        echo "Sorry, something went wrong";
+        echo "Sorry, something went wrong<br />";
+        echo $conn->error;
     } 
 
 
