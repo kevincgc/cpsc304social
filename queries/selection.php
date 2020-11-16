@@ -15,6 +15,8 @@
                 echo "<tr><td class='borderclass'>".$row["username"]."</td><td class='borderclass'>".$row["birthday"]."</td></tr>";
             }
             echo "</table>";
+        } else {
+            echo "0 results";
         }
     } else {
         echo "Sorry, something went wrong";
