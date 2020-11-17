@@ -107,6 +107,18 @@ INSERT INTO Postal_Code VALUES('V6T1Z4','6371 Crescent Road','Vancouver','BC');
 
 /*
 
+SELECT username
+FROM Users U
+WHERE NOT EXISTS
+      (SELECT G.group_id
+       FROM Groups G
+       WHERE NOT EXISTS
+        (SELECT UJG.group_id
+        FROM User_Joins_Group UJG
+    WHERE UJG.username = U.username AND G.group_id = UJG.group_id));
+
+
+
 SELECT Temp.username, Temp.birthday
 FROM (SELECT username, birthday, AVG(price) average
       FROM Ad, Users, Post
