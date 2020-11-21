@@ -76,6 +76,13 @@ CREATE TABLE User_Joins_Group(
 	PRIMARY KEY (group_id, username)
 );
 
+CREATE TABLE Postal_Code(
+	postal_code CHAR(6) NOT NULL,
+	city VARCHAR(100) NOT NULL,
+	province VARCHAR(100) NOT NULL,
+	PRIMARY KEY (postal_code)
+);
+
 CREATE TABLE Group_Event(
 	event_id INTEGER NOT NULL,
 	group_id INTEGER NOT NULL,
@@ -84,18 +91,11 @@ CREATE TABLE Group_Event(
 	creation_date DATETIME,
 	start_date DATETIME,
 	end_date DATETIME,
-	postal_code CHAR(6) UNIQUE,
-	PRIMARY KEY (event_id),
-	FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE
-);
-
-CREATE TABLE Postal_Code(
-	postal_code CHAR(6) NOT NULL,
+	postal_code CHAR(6),
 	address VARCHAR(100),
-	city VARCHAR(100),
-	province VARCHAR(100),
-	FOREIGN KEY (postal_code) REFERENCES Group_Event (postal_code) ON DELETE CASCADE,
-	PRIMARY KEY (postal_code)
+	PRIMARY KEY (event_id),
+	FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE,
+	FOREIGN KEY (postal_code) REFERENCES Postal_Code (postal_code) ON DELETE CASCADE 
 );
 
 CREATE TABLE Chat (
