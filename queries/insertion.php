@@ -22,7 +22,7 @@
          date_of_registration)
     VALUES (
             '$username',
-            ''$password',
+            '$password',
             '$gender',
             '$birthday',
             '$firstName',
