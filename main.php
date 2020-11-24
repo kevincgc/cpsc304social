@@ -63,7 +63,7 @@
 
         <hr />
 
-        <h2>Get A User''s Comments (Projection)</h2>
+        <h2>Get A User's Comments (Projection)</h2>
 
         <form method="post" action="queries/projection.php">
             User Name: <input type="text" name="username" required> <br /><br />
