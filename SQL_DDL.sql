@@ -15,8 +15,8 @@ CREATE TABLE Users (
 CREATE TABLE Requester_Befriends_Requestee (
 	requester VARCHAR(20) NOT NULL,
 	requestee VARCHAR(20) NOT NULL,
-    FOREIGN KEY (requester) REFERENCES Users (username) ON DELETE CASCADE,
-    FOREIGN KEY (requestee) REFERENCES Users (username) ON DELETE CASCADE,
+    FOREIGN KEY (requester) REFERENCES Users (username) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (requestee) REFERENCES Users (username) ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY (requester, requestee)
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE Groups(
 	is_public BOOLEAN,
 	creation_date DATE,
 	PRIMARY KEY (group_id),
-	FOREIGN KEY (username) REFERENCES Users (username) ON DELETE CASCADE
+	FOREIGN KEY (username) REFERENCES Users (username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Post (
@@ -37,15 +37,15 @@ CREATE TABLE Post (
 	post_date DATETIME,
 	is_public BOOLEAN,
 	PRIMARY KEY (post_id),
-	FOREIGN KEY (username) REFERENCES Users (username) ON DELETE CASCADE,
-	FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE
+	FOREIGN KEY (username) REFERENCES Users (username) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE User_Likes_Post (
 	username VARCHAR(20) NOT NULL,
 	post_id INTEGER NOT NULL,
-    FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE,
-    FOREIGN KEY (post_id) REFERENCES Post(post_id) ON DELETE CASCADE,
+    FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES Post(post_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY (username, post_id)
 );
 
@@ -55,7 +55,7 @@ CREATE TABLE Blog(
 	image BLOB,
 	video BLOB,
 	PRIMARY KEY (post_id),
-	FOREIGN KEY (post_id) REFERENCES Post(post_id) ON DELETE CASCADE
+	FOREIGN KEY (post_id) REFERENCES Post(post_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Ad (
@@ -64,15 +64,15 @@ CREATE TABLE Ad (
 	duration INTEGER,
 	link BLOB,
 	PRIMARY KEY (post_id),
-	FOREIGN KEY (post_id) REFERENCES Post(post_id) ON DELETE CASCADE
+	FOREIGN KEY (post_id) REFERENCES Post(post_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
 CREATE TABLE User_Joins_Group(
 	group_id INTEGER NOT NULL,
 	username VARCHAR(20) NOT NULL,
-	FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE,
-	FOREIGN KEY (username) REFERENCES Users (username) ON DELETE CASCADE,
+	FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (username) REFERENCES Users (username) ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY (group_id, username)
 );
 
@@ -94,8 +94,8 @@ CREATE TABLE Group_Event(
 	postal_code CHAR(6),
 	address VARCHAR(100),
 	PRIMARY KEY (event_id),
-	FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE,
-	FOREIGN KEY (postal_code) REFERENCES Postal_Code (postal_code) ON DELETE CASCADE 
+	FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (postal_code) REFERENCES Postal_Code (postal_code) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
 CREATE TABLE Chat (
@@ -110,16 +110,16 @@ CREATE TABLE Message (
     post_date   DATETIME,
     content     VARCHAR(200),
     PRIMARY KEY  (message_id, chat_id),
-    FOREIGN KEY  (chat_id) REFERENCES Chat (chat_id) ON DELETE CASCADE,
-    FOREIGN KEY  (username) REFERENCES Users (username) ON DELETE CASCADE
+    FOREIGN KEY  (chat_id) REFERENCES Chat (chat_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY  (username) REFERENCES Users (username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE User_Participate_Chat(
     username   	VARCHAR(20) NOT NULL,
     chat_id     INTEGER NOT NULL,
     PRIMARY KEY (username, chat_id),
-    FOREIGN KEY (username) REFERENCES Users (username) ON DELETE CASCADE,
-    FOREIGN KEY (chat_id) REFERENCES Chat (chat_id) ON DELETE CASCADE
+    FOREIGN KEY (username) REFERENCES Users (username) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (chat_id) REFERENCES Chat (chat_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Comments(
@@ -129,8 +129,8 @@ CREATE TABLE Comments(
     content      VARCHAR(200),
     posted_date  DATETIME,
     PRIMARY KEY  (comment_id),
-    FOREIGN KEY  (username) REFERENCES Users (username) ON DELETE CASCADE,
-    FOREIGN KEY  (post_id) REFERENCES Post (post_id) ON DELETE CASCADE
+    FOREIGN KEY  (username) REFERENCES Users (username) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY  (post_id) REFERENCES Post (post_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -138,15 +138,15 @@ CREATE TABLE Calendar(
     calendar_id 	INTEGER NOT NULL,
     username   	VARCHAR(20) NOT NULL,
     PRIMARY KEY  (calendar_id),
-    FOREIGN KEY  (username) REFERENCES Users (username) ON DELETE CASCADE
+    FOREIGN KEY  (username) REFERENCES Users (username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Calendar_Records_Events(
 	calendar_id INTEGER NOT NULL,
 	event_id INTEGER NOT NULL,
 	date_recorded DATETIME,
-	FOREIGN KEY (calendar_id) REFERENCES Calendar (calendar_id) ON DELETE CASCADE,
-	FOREIGN KEY (event_id) REFERENCES Group_Event (event_id) ON DELETE CASCADE,
+	FOREIGN KEY (calendar_id) REFERENCES Calendar (calendar_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (event_id) REFERENCES Group_Event (event_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY (calendar_id, event_id)
 );
 
